@@ -105,11 +105,13 @@ function checkIfBust () {
   dealerSum.value = dealerScore
   if (playerScore > 21) {
     writeResult.value = 'You BUSTED !!'
-    winsCounter.value = noOfWins - 1
+    noOfWins--
+    winsCounter.value = noOfWins
     disableHitStand()
   } else if (playerScore === 21) {
     writeResult.value = 'It\'s 21. You win !!'
-    winsCounter.value = noOfWins + 1
+    noOfWins++
+    winsCounter.value = noOfWins
     disableHitStand()
   }
 }
@@ -131,16 +133,19 @@ function userStands () {
   }
   if (dealerScore > playerScore && dealerScore <= 21) {
     writeResult.value = 'Dealer won with ' + dealerScore
-    winsCounter.value = noOfWins - 1
+    noOfWins--
+    winsCounter.value = noOfWins
     disableHitStand()
   } else if (playerScore > dealerScore || dealerScore > 21) {
     if (playerScore === 21) {
       writeResult.value = 'You won with BLACKJACK !'
-      winsCounter.value = noOfWins + 1
+      noOfWins++
+      winsCounter.value = noOfWins
       disableHitStand()
     } else {
       writeResult.value = 'You won with ' + playerScore
-      winsCounter.value = noOfWins + 1
+      noOfWins++
+      winsCounter.value = noOfWins
       disableHitStand()
     }
   } else {
@@ -157,7 +162,6 @@ function disableHitStand () {
 
 // main game function on 'deal' button click
 function playGame () {
-  winsCounter.value = noOfWins
   player()
   dealer()
   deal.disabled = true
@@ -203,5 +207,4 @@ var winsCounter = document.getElementById('winscounter')
 var playerCards = document.getElementById('playercards')
 var dealerCards = document.getElementById('dealercards')
 var noOfCardsPlayer = 0, noOfCardsDealer = 0, noOfWins = 0
-
 // **** HOPE YOU ENJOYED IT. PLEASE FEEL FREE TO SEND ME ANY SUGGESTIONS ON IMPROVING THIS ON (bjtimi.007@gmail.com) OR SEND ME PULL REQUESTS *** //
