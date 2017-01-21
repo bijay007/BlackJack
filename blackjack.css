@@ -35,14 +35,14 @@ h2 {
 	margin : 0 auto;
 	padding: 0.5%;
 	background-color: #31172a;
-	height: 125px;	 
+	height: 125px;
 }
 
 #dealercards {
 	margin : 0 auto;
 	padding: 1%;
 	background-color: #062c09;
-	height: 125px;	 
+	height: 125px;
 }
 
 .dealreset {
@@ -50,13 +50,20 @@ h2 {
 	text-align: center;
 }
 
+button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 #dealBtn,#resetBtn {
-	width: 10%;
+	width: 15%;
 	height: 10%;
 	display: inline-block;
 	position: relative;
 	margin: 1% 30%;
-	border-radius: 2% 1%;
+	border-radius: 20px 2px;
+	overflow-wrap: break-word; /* when text-overflows break the letters and wrap in new-lines */
 }
 
 .hitstand {
@@ -65,12 +72,14 @@ h2 {
 }
 
 #hitBtn,#standBtn {
-	width: 10%;
+	width: 15%;
 	height: 10%;
 	display: inline-block;
 	margin: 0.5% 15%;
 	position : relative;
 	border-radius: 1% 2%;
+	overflow-x: hidden;		/* hide text that overflows in x-axis */
+	text-overflow: ellipsis;	/* add ... in button to show that some text is there */
 }
 
 input[type=text]{
@@ -80,7 +89,6 @@ input[type=text]{
 .sumdisplay {
 	display: block;
 	text-align: center;
-	font-size: 18px;
 }
 
 #playersum,#dealersum {
@@ -88,6 +96,7 @@ input[type=text]{
 	margin : 1% auto;
 	font-weight: bold;
 	text-align: center;
+	font-size: 16px;
 }
 
 #show {
@@ -109,7 +118,8 @@ input[type=text]{
 }
 
 #winscounter {
-	font-size: 16px;
+	font-size: 15px;
+	font-weight: bold;
 	width: 20%;
 	border: solid;
 	padding: 1px;
@@ -123,9 +133,7 @@ footer {
 }
 
 a:link {
-	color : #ffff00;
 	text-decoration: none;
-
 }
 
 a:hover, a:visited{
