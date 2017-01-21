@@ -1,17 +1,5 @@
 //*************************** BLACKJACK GAME FOR PROFESSIONALS ****************************//
 "use strict";
-// dom elements and event handlers
-var deal = document.getElementById("dealBtn")
-deal.addEventListener("click", playGame);
-var hit = document.getElementById("hitBtn").addEventListener("click", goToHitMethod);
-var stand = document.getElementById("standBtn").addEventListener("click", userStands);
-var reset = document.getElementById("resetBtn").addEventListener("click",resetGame);
-var playerSum = document.getElementById("playersum");
-var dealerSum = document.getElementById("dealersum");
-var writeResult = document.getElementById("resultbox");
-var playerCards = document.getElementById("playercards");
-var dealerCards = document.getElementById("dealercards");
-var noOfCardsPlayer = 0, noOfCardsDealer = 0;
 
 // Defining properties and methods for every single card object created by fillPlayingCards function
 function CardObject(cardNum, cardSuit) {
@@ -123,9 +111,12 @@ function checkIfBust() {
     playerSum.value = playerScore;
     dealerSum.value = dealerScore;
     if (playerScore > 21) {
-        writeResult.value = "You went over 21. You lost!!";
+        writeResult.value = "You BUSTED !!";
+        winsCounter.value = noOfWins-1;
+        stand.disabled = true;
     } else if (playerScore === 21) {
-        writeResult.value = "Great. You got 21. You won!!";
+        writeResult.value = "It's 21. You win !!";
+        winsCounter.value = noOfWins+1;
     }
 }
 
@@ -140,23 +131,28 @@ function userStands() {
         dealerSum.value = dealerScore;
     }
     if (dealerScore > playerScore && dealerScore <= 21) {
-        writeResult.value = "Dealer has " + dealerScore + " & you have " + playerScore + ". You lost.";
+        writeResult.value = "Dealer won with " + dealerScore;
+        winsCounter.value = noOfWins-1;
     } else if (playerScore > dealerScore || dealerScore>21) {
         if (playerScore === 21) {
-            writeResult.value = "It's a BLACKJACK. You won !!"
+            writeResult.value = "You won with BLACKJACK !"
+            winsCounter.value = noOfWins+1;
         } else {
-            writeResult.value = "You have " + playerScore + " & Dealer has " + dealerScore + ". You won.";
+            writeResult.value = "You won with " + playerScore;
+            winsCounter.value = noOfWins+1;
         }
     } else {
-        writeResult.value = "Both tied with " + playerScore + " points.";
+        writeResult.value = "Both tied with " + playerScore;
     }
 }
 
 // main game function on 'deal' button click
 function playGame() {
+    winsCounter.value = noOfWins;
     player();
     dealer();
     deal.disabled = true;
+    stand.disabled = false;
 }
 
 // game reset on 'reset' button click
@@ -175,6 +171,25 @@ function resetGame() {
         dealerCardImages[j].parentNode.removeChild(dealerCardImages[j]); 
         }
     }());
+    mainPlayer.iniDeck = [];
+    mainDealer.iniDeck = [];
+    noOfCardsDealer = 0;
+    noOfCardsPlayer = 0;
+    stand.disabled = true;
 }
-// ***** HOPE YOU ENJOYED IT. PLEASE FEEL FREE TO SEND ME ANY SUGGESTIONS ON IMPROVING THIS ON MY EMAIL (bjtimi.007@gmail.com) OR SEND ME PULL REQUESTS ************************ //
 
+// dom elements and event handlers
+var deal = document.getElementById("dealBtn")
+deal.addEventListener("click", playGame);
+var hit = document.getElementById("hitBtn").addEventListener("click", goToHitMethod);
+var stand = document.getElementById("standBtn").addEventListener("click", userStands);
+var reset = document.getElementById("resetBtn").addEventListener("click",resetGame);
+var playerSum = document.getElementById("playersum");
+var dealerSum = document.getElementById("dealersum");
+var writeResult = document.getElementById("resultbox");
+var winsCounter = document.getElementById("winscounter");
+var playerCards = document.getElementById("playercards");
+var dealerCards = document.getElementById("dealercards");
+var noOfCardsPlayer = 0, noOfCardsDealer = 0, noOfWins = 0;
+
+// **** HOPE YOU ENJOYED IT. PLEASE FEEL FREE TO SEND ME ANY SUGGESTIONS ON IMPROVING THIS ON (bjtimi.007@gmail.com) OR SEND ME PULL REQUESTS *** //

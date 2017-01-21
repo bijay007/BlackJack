@@ -83,29 +83,37 @@ input[type=text]{
 	font-size: 18px;
 }
 
-#playersum {
+#playersum,#dealersum {
 	display: block;
 	margin : 1% auto;
-}
-
-#dealersum {
-	display: block;
-	margin: 1% auto;
-}
-
-.result {
-	display: block;	
+	font-weight: bold;
 	text-align: center;
+}
+
+#show {
+	display: inline-block;	
 	margin-top: 1%;
+	text-align: left;
+}
+
+#counter {
+	display: inline-block;	
+	margin-top: 1%;
+	text-align: center;
 }
 
 #resultbox {
-	font-size: 18px;
-	margin : 0.5% auto 0 5%;
-	width: 60%;
-	position: relative;
+	font-size: 15px;
+	font-weight: bold;
 	color: #5500ff;
-	font-weight: 300;
+}
+
+#winscounter {
+	font-size: 16px;
+	width: 20%;
+	border: solid;
+	padding: 1px;
+	text-align: center;
 }
 
 footer {
