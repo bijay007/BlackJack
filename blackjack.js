@@ -1,5 +1,21 @@
 // *************************** BLACKJACK GAME FOR PROFESSIONALS ****************************//
 'use strict'
+// dom elements and event handlers
+var deal = document.getElementById('dealBtn')
+var hit = document.getElementById('hitBtn')
+var stand = document.getElementById('standBtn')
+var reset = document.getElementById('resetBtn')
+deal.addEventListener('click', playGame)
+hit.addEventListener('click', goToHitMethod)
+stand.addEventListener('click', userStands)
+reset.addEventListener('click', resetGame)
+var playerSum = document.getElementById('playersum')
+var dealerSum = document.getElementById('dealersum')
+var writeResult = document.getElementById('resultbox')
+var winsCounter = document.getElementById('winscounter')
+var playerCards = document.getElementById('playercards')
+var dealerCards = document.getElementById('dealercards')
+var noOfCardsPlayer = 0, noOfCardsDealer = 0, noOfWins = 0
 
 // Defining properties and methods for every single card object created by fillPlayingCards function
 function CardObject (cardNum, cardSuit) {
@@ -105,12 +121,12 @@ function checkIfBust () {
   dealerSum.value = dealerScore
   if (playerScore > 21) {
     writeResult.value = 'You BUSTED !!'
-    noOfWins--
+    noOfWins -= 1
     winsCounter.value = noOfWins
     disableHitStand()
   } else if (playerScore === 21) {
     writeResult.value = 'It\'s 21. You win !!'
-    noOfWins++
+    noOfWins += 1
     winsCounter.value = noOfWins
     disableHitStand()
   }
@@ -133,18 +149,18 @@ function userStands () {
   }
   if (dealerScore > playerScore && dealerScore <= 21) {
     writeResult.value = 'Dealer won with ' + dealerScore
-    noOfWins--
+    noOfWins -= 1
     winsCounter.value = noOfWins
     disableHitStand()
   } else if (playerScore > dealerScore || dealerScore > 21) {
     if (playerScore === 21) {
       writeResult.value = 'You won with BLACKJACK !'
-      noOfWins++
+      noOfWins += 1
       winsCounter.value = noOfWins
       disableHitStand()
     } else {
       writeResult.value = 'You won with ' + playerScore
-      noOfWins++
+      noOfWins += 1
       winsCounter.value = noOfWins
       disableHitStand()
     }
@@ -191,20 +207,4 @@ function resetGame () {
   noOfCardsPlayer = 0
 }
 
-// dom elements and event handlers
-var deal = document.getElementById('dealBtn')
-deal.addEventListener('click', playGame)
-var hit = document.getElementById('hitBtn')
-hit.addEventListener('click', goToHitMethod)
-var stand = document.getElementById('standBtn')
-stand.addEventListener('click', userStands)
-var reset = document.getElementById('resetBtn')
-reset.addEventListener('click', resetGame)
-var playerSum = document.getElementById('playersum')
-var dealerSum = document.getElementById('dealersum')
-var writeResult = document.getElementById('resultbox')
-var winsCounter = document.getElementById('winscounter')
-var playerCards = document.getElementById('playercards')
-var dealerCards = document.getElementById('dealercards')
-var noOfCardsPlayer = 0, noOfCardsDealer = 0, noOfWins = 0
 // **** HOPE YOU ENJOYED IT. PLEASE FEEL FREE TO SEND ME ANY SUGGESTIONS ON IMPROVING THIS ON (bjtimi.007@gmail.com) OR SEND ME PULL REQUESTS *** //
