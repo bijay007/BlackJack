@@ -113,10 +113,11 @@ function checkIfBust() {
     if (playerScore > 21) {
         writeResult.value = "You BUSTED !!";
         winsCounter.value = noOfWins-1;
-        stand.disabled = true;
+        disableHitStand();
     } else if (playerScore === 21) {
         writeResult.value = "It's 21. You win !!";
         winsCounter.value = noOfWins+1;
+        disableHitStand();
     }
 }
 
@@ -133,17 +134,27 @@ function userStands() {
     if (dealerScore > playerScore && dealerScore <= 21) {
         writeResult.value = "Dealer won with " + dealerScore;
         winsCounter.value = noOfWins-1;
+        disableHitStand();
     } else if (playerScore > dealerScore || dealerScore>21) {
         if (playerScore === 21) {
             writeResult.value = "You won with BLACKJACK !"
             winsCounter.value = noOfWins+1;
+            disableHitStand();
         } else {
             writeResult.value = "You won with " + playerScore;
             winsCounter.value = noOfWins+1;
+            disableHitStand();
         }
     } else {
         writeResult.value = "Both tied with " + playerScore;
+        disableHitStand();
     }
+}
+
+// function that disables hit and stand button after result is shown.
+function disableHitStand() {
+    stand.disabled = true;
+    hit.disabled = true;
 }
 
 // main game function on 'deal' button click
@@ -153,6 +164,7 @@ function playGame() {
     dealer();
     deal.disabled = true;
     stand.disabled = false;
+    hit.disabled = false;
 }
 
 // game reset on 'reset' button click
@@ -175,15 +187,17 @@ function resetGame() {
     mainDealer.iniDeck = [];
     noOfCardsDealer = 0;
     noOfCardsPlayer = 0;
-    stand.disabled = true;
 }
 
 // dom elements and event handlers
 var deal = document.getElementById("dealBtn")
 deal.addEventListener("click", playGame);
-var hit = document.getElementById("hitBtn").addEventListener("click", goToHitMethod);
-var stand = document.getElementById("standBtn").addEventListener("click", userStands);
-var reset = document.getElementById("resetBtn").addEventListener("click",resetGame);
+var hit = document.getElementById("hitBtn");
+hit.addEventListener("click", goToHitMethod);
+var stand = document.getElementById("standBtn");
+stand.addEventListener("click", userStands);
+var reset = document.getElementById("resetBtn");
+reset.addEventListener("click",resetGame);
 var playerSum = document.getElementById("playersum");
 var dealerSum = document.getElementById("dealersum");
 var writeResult = document.getElementById("resultbox");
