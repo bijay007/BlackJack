@@ -83,7 +83,7 @@ button.truncate {
 }
 
 input[type=text]{
-  border-radius:8px;
+  border-radius: 5%;
 }
 
 .sumdisplay {
@@ -97,12 +97,22 @@ input[type=text]{
 	font-weight: bold;
 	text-align: center;
 	font-size: 16px;
+	padding: 1px;
+	max-width: 100%
 }
 
 #show {
-	display: inline-block;	
 	margin-top: 1%;
 	text-align: left;
+	display: inline-block;
+}
+
+#resultbox {
+	display: inline-block;
+	max-width: 85%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #5500ff;
 }
 
 #counter {
@@ -111,25 +121,21 @@ input[type=text]{
 	text-align: center;
 }
 
-#resultbox {
-	font-size: 15px;
-	font-weight: bold;
-	color: #5500ff;
-}
-
 #winscounter {
+	display: inline-block;
 	font-size: 15px;
 	font-weight: bold;
-	width: 20%;
+	max-width: 10%;
 	border: solid;
+	border-radius: 20%;
 	padding: 1px;
 	text-align: center;
 }
 
 footer {
 	text-align: center;
-	margin: -1% auto;
 	font-family: Impact;
+	position: relative;
 }
 
 a:link {
